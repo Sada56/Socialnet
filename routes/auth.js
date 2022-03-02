@@ -13,15 +13,15 @@ router.post("/register", async (req, res) => {
   const emailExist =await User.findOne({email:req.body.email});
   if (emailExist) return res.sendStatus(400).send('Email already exixts') 
 
-  //hacher le motde pass 
-  // const salt = await bcrypt.genSalt(10);
-  // const hashedPassword= await bcrypt.hash(req.body.password ,salt);  
+  //hacher le mot de pass
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword= await bcrypt.hash(req.body.password, salt);  
 
-  // crer un nouveeu utilisateur
+  //crer un nouveeu utilisateur
   const user = new User({
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password
+    password:hashedPassword
   });
   try {
     const savedUser = await user.save();

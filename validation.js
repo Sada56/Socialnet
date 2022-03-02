@@ -1,6 +1,6 @@
 // validation
 const Joi = require('@hapi/joi');
-console.log(Joi)
+//console.log(Joi)
 //Register validation
 const registerValidation =(data)=>{
     const schema = {
